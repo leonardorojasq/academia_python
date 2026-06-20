@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}
+Clases del Curso
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+     <!-- EL MEJOR LUGAR PARA LOS MENSAJES FLASH -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="row">
+          <div class="col-12">
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="submit" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <div class="mb-5 text-center">
+        <h1 class="fw-bold text-info">
+            Clases Disponibles
+        </h1>
+
+        <p class="text-secondary">
+            Selecciona una clase para comenzar tu aprendizaje.
+        </p>
+    </div>
+
+    {% if clases %}
+
+    <div class="row">
+
+        {% for clase in clases %}
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card bg-dark text-white shadow h-100 border-secondary">
+
+                <img
+                    src="{{ url_for('static', filename=clase.imagen) }}"
+                    class="card-img-top"
+                    alt="{{ clase.titulo }}"
+                    style="height:220px; object-fit:cover;">
+
+                <div class="card-body">
+
+                    <span class="badge bg-info mb-2">
+                        Clase {{ clase.orden }}
+                    </span>
+
+                    <h4 class="card-title">
+                        {{ clase.titulo }}
+                    </h4>
+
+                    <p class="card-text text-secondary">
+
+                        {% if clase.contenido|length > 120 %}
+                            {{ clase.contenido[:120] }}...
+                        {% else %}
+                            {{ clase.contenido }}
+                        {% endif %}
+
+                    </p>
+
+                </div>
+
+                <div class="card-footer bg-transparent border-0">
+
+                    <a
+                        href="#"
+                        class="btn btn-neon w-100">
+
+                        Ver Clase
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="text-center py-5">
+
+        <h3 class="text-secondary">
+            No hay clases disponibles
+        </h3>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

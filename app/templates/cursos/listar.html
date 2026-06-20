@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}Cursos{% endblock %}
+
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">
+            Academia Desoft
+        </a>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="container">
+        <h1>Aprende Programación</h1>
+        <p>
+            Python, Flask, HTML, CSS, SQLAlchemy y Javascript paso a paso.
+        </p>
+        <a href="#cursos" class="btn btn-neon mt-3">
+            Ver Cursos
+        </a>
+        <a href="{{ url_for('admin.crear_curso') }}" class="btn btn-neon mt-3">
+            Crear Curso
+        </a>
+    </div>
+</section>
+
+<section id="cursos" class="container py-5">
+
+    <h2 class="section-title">
+        Cursos Disponibles
+    </h2>
+
+    {% if cursos %}
+
+    <div class="row g-4">
+
+        {% for curso in cursos %}
+
+        <div class="col-md-4">
+
+            <div class="card">
+
+                <img src="{{ url_for('static', filename=curso.imagen) }}" class="card-img-top" alt="Imagen de {{ curso.nombre }}">
+
+
+                <div class="card-body">
+
+                    <h4 class="card-title">
+                        {{ curso.nombre }}
+                    </h4>
+
+                    <p class="card-text">
+                        {{ curso.descripcion }}
+                    </p>
+
+                    <a href="#" class="btn btn-neon">
+                        Ver Curso
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <div class="empty-state">
+
+        <h1>📚</h1>
+
+        <h3>
+            No hay cursos registrados
+        </h3>
+
+        <p>
+            Crea tu primer curso para comenzar.
+        </p>
+
+    </div>
+
+    {% endif %}
+
+</section>
+{% endblock %}

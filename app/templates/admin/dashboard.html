@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard Administrador
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+```
+<div class="text-center mb-5">
+
+    <h1 class="display-4 fw-bold text-info">
+        Panel Administrativo
+    </h1>
+
+    <p class="text-secondary fs-5">
+        Gestiona cursos, clases, unidades y ejercicios desde un solo lugar.
+    </p>
+
+</div>
+
+<div class="row g-4">
+
+    <!-- CURSOS -->
+    <div class="col-md-6 col-xl-3">
+
+        <div class="card bg-dark text-white border-secondary shadow-lg h-100">
+
+            <div class="card-body text-center">
+
+                <div class="display-4 mb-3">
+                    📚
+                </div>
+
+                <h3 class="text-info">
+                    Cursos
+                </h3>
+
+                <p class="text-secondary">
+                    Crear, editar y administrar los cursos disponibles.
+                </p>
+
+                <a href=""
+                   class="btn btn-info w-100">
+                    Gestionar Cursos
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- CLASES -->
+    <div class="col-md-6 col-xl-3">
+
+        <div class="card bg-dark text-white border-secondary shadow-lg h-100">
+
+            <div class="card-body text-center">
+
+                <div class="display-4 mb-3">
+                    🎓
+                </div>
+
+                <h3 class="text-info">
+                    Clases
+                </h3>
+
+                <p class="text-secondary">
+                    Administrar todas las clases de la plataforma.
+                </p>
+
+                <a href=""
+                   class="btn btn-info w-100">
+                    Gestionar Clases
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- UNIDADES -->
+    <div class="col-md-6 col-xl-3">
+
+        <div class="card bg-dark text-white border-secondary shadow-lg h-100">
+
+            <div class="card-body text-center">
+
+                <div class="display-4 mb-3">
+                    📝
+                </div>
+
+                <h3 class="text-info">
+                    Unidades
+                </h3>
+
+                <p class="text-secondary">
+                    crea organiza el contenido de cada clase.
+                </p>
+
+                <a href="#"
+                   class="btn btn-outline-info w-100">
+                    Próximamente
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- EJERCICIOS -->
+    <div class="col-md-6 col-xl-3">
+
+        <div class="card bg-dark text-white border-secondary shadow-lg h-100">
+
+            <div class="card-body text-center">
+
+                <div class="display-4 mb-3">
+                    ✅
+                </div>
+
+                <h3 class="text-info">
+                    Ejercicios
+                </h3>
+
+                <p class="text-secondary">
+                    Gestiona preguntas, respuestas y actividades.
+                </p>
+
+                <a href="#"
+                   class="btn btn-outline-info w-100">
+                    Próximamente
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card bg-dark border-secondary shadow-lg mt-5">
+
+    <div class="card-body">
+
+        <h3 class="text-info mb-3">
+            Estado del Proyecto
+        </h3>
+
+        <div class="row text-center">
+
+            <div class="col-md-3">
+                <h2 class="text-info">
+                    {{ total_cursos }}
+                </h2>
+                <p class="text-secondary">
+                    Cursos
+                </p>
+            </div>
+
+            <div class="col-md-3">
+                <h2 class="text-info">
+                    {{ total_clases }}
+                </h2>
+                <p class="text-secondary">
+                    Clases
+                </p>
+            </div>
+
+            <div class="col-md-3">
+                <h2 class="text-info">
+                    {{ total_unidades }}
+                </h2>
+                <p class="text-secondary">
+                    Unidades
+                </p>
+            </div>
+
+            <div class="col-md-3">
+                <h2 class="text-info">
+                    {{ total_ejercicios }}
+                </h2>
+                <p class="text-secondary">
+                    Ejercicios
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</div>
+
+{% endblock %}

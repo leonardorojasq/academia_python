@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block title %}
+Administrar Cursos
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+     <!-- EL MEJOR LUGAR PARA LOS MENSAJES FLASH -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="row">
+          <div class="col-12">
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="submit" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        
+
+        <h2 class="text-white">
+            Administración de Cursos
+        </h2>
+
+        <a href="{{ url_for('admin.crear_curso') }}"
+           class="btn btn-success">
+
+            + Nuevo Curso
+
+        </a>
+
+    </div>
+
+    <div class="card bg-dark shadow">
+
+        <div class="card-body">
+
+            {% if cursos %}
+
+            <table class="table table-dark table-hover">
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>DESCRIPCION</th>
+                        <th>URL</th>
+                        <th>IMAGEN</th>
+                        <th>ACCIONES</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for curso in cursos %}
+
+                    <tr>
+
+                        <td>{{ curso.id }}</td>
+
+                        <td>{{ curso.nombre }}</td>
+
+                        <td>{{ curso.descripcion }}</td>
+                        <td>{{ curso.imagen }}</td>
+                        <td><img src="{{ url_for('static', filename=curso.imagen) }}" class="" alt="Imagen de {{ curso.nombre }}" style="width:60px;height: auto;"></td>
+
+                        <td>
+
+                            <a href="{{ url_for('admin.editar_curso', id=curso.id) }}"
+                               class="btn btn-warning btn-sm">
+
+                                Editar
+
+                            </a>
+
+                            <form
+                                action="{{ url_for('admin.eliminar_curso', id=curso.id) }}"
+                                method="POST"
+                                style="display:inline;">
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-danger btn-sm">
+
+                                    Eliminar
+
+                                </button>
+                                 {{ message }}
+                            </form>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+            {% else %}
+
+            <div class="text-center py-5">
+
+                <h4 class="text-secondary">
+                    No hay cursos registrados
+                </h4>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

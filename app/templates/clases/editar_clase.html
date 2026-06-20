@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block title %}
+Nueva Clase
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="card bg-dark text-white shadow-lg border-secondary">
+
+                <div class="card-header">
+                    <h2 class="mb-0 text-info">
+                        Editar Clase
+                    </h2>
+                </div>
+
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data" action="{{url_for('clase.crear_clase')}}">
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Título</label>
+                            <input type="text" name="titulo" value="{{ clase.titulo }}" class="form-control" required>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Contenido</label>
+                            <textarea
+                                name="contenido"
+                                value="{{ clase.contenido }}"
+                                rows="6"
+                                class="form-control"
+                                required>{{ clase.contenido }}</textarea>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Curso</label>
+                            <select
+                                name="curso_id"
+                                class="form-select"
+                                
+                                required>
+
+                                <option value=" ">Seleccione un curso</option>
+
+                                {% for curso in cursos %}
+
+                                <option value="{{ curso.id }}">
+                                    {{ curso.nombre }}
+                                </option>
+
+                                {% endfor %}
+
+                            </select>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Orden
+                            </label>
+
+                            <input
+                                type="number"
+                                value="{{ clase.orden }}"
+                                name="orden"
+                                class="form-control"
+                                min="1"
+                                required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Imagen
+                            </label>
+
+                            <input
+                                type="file"
+                                name="imagen"
+                                class="form-control"
+                                value="{{ clase.imagen }}">
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+                                Video
+                            </label>
+
+                            <input
+                                type="file"
+                                name="video"
+                                class="form-control">
+
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+
+                            <a href="{{ url_for('clase.listar_clase', curso_id=1) }}"
+                               class="btn btn-secondary">
+
+                                Cancelar
+
+                            </a>
+
+                            <button
+                                type="submit"
+                                class="btn btn-info">
+
+                                Guardar Clase
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

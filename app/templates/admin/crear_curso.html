@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Crear Nuevo Curso{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card p-4 shadow-lg text-white" style="max-width: 600px; width: 100%; border-radius: 15px; background-color: #111827;">
+        
+        <div class="mb-4">
+            <h2 class="fw-bold text-info">Crear Nuevo Curso</h2>
+            <p class="text-secondary">Completa la información e incluye una imagen para el curso.</p>
+        </div>
+
+        <!-- Mantenemos el bloque flash para errores de subida -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div class="mb-3">
+              {% for category, message in messages %}
+                {% set alert_class = 'danger' if category == 'error' else 'success' %}
+                <div class="alert alert-{{ alert_class }} text-dark fw-semibold" role="alert">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <!-- ¡IMPORTANTE!: Se añade enctype para permitir subida de archivos -->
+        <form action="{{ url_for('admin.crear_curso') }}" method="POST" enctype="multipart/form-data" novalidate>
+            
+            <!-- Campo: Nombre -->
+            <div class="mb-3">
+                <label for="nombre" class="form-label fw-semibold">Nombre del Curso</label>
+                <input type="text" class="form-control bg-dark text-white border-secondary" id="nombre" name="nombre" maxlength="100" required>
+            </div>
+
+            <!-- Campo: Descripción -->
+            <div class="mb-3">
+                <label for="descripcion" class="form-label fw-semibold">Descripción</label>
+                <textarea class="form-control bg-dark text-white border-secondary" id="descripcion" name="descripcion" rows="3" maxlength="200" required></textarea>
+            </div>
+
+            <!-- NUEVO CAMPO: Subir Imagen -->
+            <div class="mb-4">
+                <label for="imagen" class="form-label fw-semibold">Imagen del Curso</label>
+                <input class="form-control bg-dark text-white border-secondary" type="file" id="imagen" name="imagen" accept="image/*">
+                <div class="form-text text-secondary">Formatos permitidos: JPG, PNG, GIF o WEBP.</div>
+            </div>
+
+            <!-- Botones -->
+            <div class="d-flex gap-2 justify-content-end">
+                <a href="{{ url_for('admin.cursos') }}" class="btn btn-outline-secondary px-4">Cancelar</a>
+                <button type="submit" class="btn btn-neon px-4">Guardar Curso</button>
+            </div>
+            
+        </form>
+
+    </div>
+</div>
+{% endblock %}

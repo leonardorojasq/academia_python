@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}
+Editar Curso
+{% endblock %}
+
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+
+    <div class="card p-4 shadow-lg text-white"
+         style="max-width: 600px;
+                width: 100%;
+                border-radius: 15px;
+                background-color: #111827;">
+
+        <div class="mb-4">
+
+            <h2 class="fw-bold text-warning">
+                Editar Curso
+            </h2>
+
+            <p class="text-secondary">
+                Modifica la información del curso.
+            </p>
+
+        </div>
+
+        <form method="POST">
+
+            <div class="mb-3">
+
+                <label class="form-label fw-semibold">
+                    Nombre del Curso
+                </label>
+
+                <input
+                    type="text"
+                    class="form-control bg-dark text-white border-secondary"
+                    name="nombre"
+                    required
+                >
+
+            </div>
+
+            <div class="mb-4">
+
+                <label class="form-label fw-semibold">
+                    Descripción
+                </label>
+
+                <textarea
+                    class="form-control bg-dark text-white border-secondary"
+                    name="descripcion"
+                    rows="4"
+                    ></textarea>
+
+            </div>
+            
+
+            <div class="d-flex justify-content-between">
+
+                <a href="{{ url_for('admin.cursos') }}"
+                   class="btn btn-outline-secondary">
+
+                    Cancelar
+
+                </a>
+
+                <button
+                    type="submit"
+                    class="btn btn-warning">
+
+                    Actualizar Curso
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
